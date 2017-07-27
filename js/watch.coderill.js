@@ -3,6 +3,7 @@ function adorn(value) {
 }
 
 function watch() {
+	// set the default variables
 	var today 		= new Date(),
 		hours 		= today.getHours(),
 		minutes 	= today.getMinutes(),
@@ -18,12 +19,17 @@ function watch() {
 	minutes = adorn(minutes);
 	seconds = adorn(seconds);
 
+	// make the time string
 	time = hours + " : " + minutes + " : " + seconds + " " + meridian;
 
-	// get the element
-	var clock = document.querySelector('#clock');
-	clock.innerHTML = time;
+	// get and set time into the element
+	var clocks = document.querySelectorAll('#clock');
+	[].forEach.call(clocks, function(clock) {
+		clock.innerHTML = time;
+	});
 
-	console.log(time);
+	// console.log(time);
+
+	// set the timer
 	var timer = setTimeout(watch, 1000);
 }
